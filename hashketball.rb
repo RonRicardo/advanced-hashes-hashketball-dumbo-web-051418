@@ -211,8 +211,26 @@ def most_points_scored
  player
 end
 
-def winning_team
+def player_scores(team)
+   game_hash.each do |location, team_data|
+    if team_data[:team_name] == team
+    return scores = team_data[:players].collect do |name, data|
+       data[:points]
+     end
+   end
+ end
 end
+
+def sum(arr)
+  return arr.reduce(:+)
+end
+
+def winning_team
+  home_scores = player_scores(game_hash[:home][:team_name])
+  away_scores = player_scores(game_hash[:away][:team_name])
+
+  sum(away_scores) > sum(home_scores)? game_hash[:away][:team_name] : game_hash[:home][:team_name]
+ end
 
 def player_with_longest_name
   name_max = 0
@@ -249,5 +267,3 @@ def long_name_steals_a_ton?
  end
  thief_name == player_with_longest_name
 end
-
-good_practices
