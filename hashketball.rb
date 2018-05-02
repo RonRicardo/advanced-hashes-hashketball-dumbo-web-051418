@@ -228,7 +228,6 @@ end
 def winning_team
   home_scores = player_scores(game_hash[:home][:team_name])
   away_scores = player_scores(game_hash[:away][:team_name])
-
   sum(away_scores) > sum(home_scores)? game_hash[:away][:team_name] : game_hash[:home][:team_name]
  end
 
